@@ -22,10 +22,17 @@ body {
 header {
     background-color: var(--bg-color);
     color: white;
-    padding: 20px 80px;
+    padding: 10px 0px;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.nav-container {
+    width: var(--main-width);
+    display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #logo a {
@@ -34,21 +41,81 @@ header {
     color: #fff;
 }
 
+#logo a img {
+    height: 55px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
 #searchBar {
     flex: 1;
     font-size: 1rem;
-    padding: 0.4em 0.8em;
+    padding: 0.6em 0.8em;
     border-radius: 60px;
     outline: none;
     border: none;
     font-weight: 500;
     min-width: 300px;
+    border-radius: 35px;
+    border: 2px solid #fad9549f;
+    background-color: transparent;
+    color: #fff;
 }
 
 #searchBar::placeholder {
     font-size: 1rem;
-    font-weight: 500;
-    color: #000;
+    font-weight: 300;
+    color: #ffffffc5;
+}
+
+#searchResults {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    row-gap: 30px;
+}
+
+#searchVal {
+    color: orange;
+}
+
+
+
+#searchBtn {
+    border: none;
+    background-color: #fada54;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+#searchBtn:hover {
+    opacity: 1;
+}
+
+form {
+    position: relative;
+}
+
+#searchBar:focus {
+    border-color: #fada54;
+}
+
+#searchBar:auto-fill {
+    background-color: transparent;
 }
 
 main {
@@ -57,14 +124,16 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 10px;
 
     .container {
         width: var(--main-width);
     }
 }
 
-
+.container.results {
+    display: none;
+}
 
 .movies-container {
     display: flex;
