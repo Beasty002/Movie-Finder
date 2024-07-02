@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log(window.location);
+
+
+
+
+
+        //for custom url use the one belowm
+
+        let loc = "http://127.0.0.1:5500/searchpage.html?id=m786892&type=movie";
+        const url = new URL(loc)
+        console.log(url.search)
+
+    })
+</script>
+
+</html>

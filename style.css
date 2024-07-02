@@ -20,12 +20,18 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0;
     background-color: var(--bg-color);
     color: white;
     padding: 10px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 80px;
+    z-index: 6;
+    transition: top 0.4s ease;
 }
 
 .nav-container {
@@ -60,24 +66,18 @@ input:-webkit-autofill:focus {
     font-weight: 500;
     min-width: 300px;
     border-radius: 35px;
-    border: 2px solid #fad9549f;
-    background-color: transparent;
-    color: #fff;
+    /* border: 2px solid #fad9549f; */
+    background-color: #fff;
+    color: black;
+
 }
 
 #searchBar::placeholder {
     font-size: 1rem;
     font-weight: 300;
-    color: #ffffffc5;
+    color: #272727c5;
 }
 
-#searchResults {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    row-gap: 30px;
-}
 
 #searchVal {
     color: orange;
@@ -87,19 +87,20 @@ input:-webkit-autofill:focus {
 
 #searchBtn {
     border: none;
-    background-color: #fada54;
     position: absolute;
     right: 5px;
-    top: 5px;
-    font-size: 1.3rem;
+    top: 2px;
+    font-size: 1.6rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     padding: 5px;
     cursor: pointer;
-    opacity: 0.7;
     transition: all 0.2s ease;
+    background-color: transparent;
+    color: black;
+    opacity: 0.8;
 }
 
 #searchBtn:hover {
@@ -124,7 +125,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 100px;
 
     .container {
         width: var(--main-width);
@@ -133,6 +134,14 @@ main {
 
 .container.results {
     display: none;
+}
+
+#searchResults {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    row-gap: 30px;
 }
 
 .movies-container {

@@ -84,6 +84,23 @@
 
 </body>
 <script>
+    setTimeout(() => {
+        const elId = document.querySelectorAll(".movie figure");
+        const mo = "movie";
+        elId.forEach(el => {
+            el.addEventListener("click", () => {
+                window.location.href = `moviepage.html?id=${el.parentElement.id}&type=movie`
+            })
+        })
+    }, 5000)
+    // setTimeout(() => {
+    //     const elId = document.querySelectorAll(".movie figure");
+    //     elId.forEach(el => {
+    //         el.addEventListener("click", () => {
+    //             console.log(el.parentElement.id);
+    //         })
+    //     })
+    // }, 5000)
 
 
 

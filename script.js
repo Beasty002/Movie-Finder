@@ -10,6 +10,8 @@ const latestT = document.getElementById("latestTVContainer")
 const searchR = document.getElementById("searchResults")
 const form = document.querySelector("form");
 const search = document.getElementById("searchBar");
+let nav = document.querySelector("header");
+var lastScrollTop = 0;
 showLatest();
 showLatestTV();
 async function showLatest() {
@@ -194,3 +196,16 @@ function updateVisibility(e) {
         scrollRightButton.style.display = 'block';
     }
 }
+
+
+
+window.addEventListener("scroll", () => {
+    var scrollTop = window.scrollY;
+    if (scrollTop > lastScrollTop) {
+        nav.style.top = "-80px"
+    }
+    else {
+        nav.style.top = "0px"
+    }
+    lastScrollTop = scrollTop;
+})
