@@ -15,6 +15,8 @@
 
 body {
     background-color: var(--body-bg);
+    overflow-x: hidden;
+    padding-bottom: 40px;
 }
 
 header {
@@ -93,14 +95,13 @@ main {
 
             .overlay {
                 background-color: rgba(18, 18, 18, 0.8);
-                backdrop-filter: blur(1px);
+                backdrop-filter: blur(2px);
                 border-radius: 10px;
-
                 height: 100%;
+                width: 100%;
                 position: absolute;
                 top: 0;
                 left: -100%;
-                width: 100%;
                 overflow: hidden;
                 color: #fff;
                 display: flex;
@@ -114,6 +115,7 @@ main {
                     width: 280px;
                     padding-left: 30px;
                     height: 35%;
+                    font-size: 1.1rem;
 
 
                 }
@@ -199,17 +201,24 @@ main {
 }
 
 .btn-cont.left {
-    left: -40px;
+    left: -50px;
     display: none;
 }
 
 .btn-cont.right {
-    right: -40px;
+    right: -50px;
 }
 
-.move-btn {
-    font-size: 3rem;
-    color: #ffffff2a;
-    transition: all 0.2s ease;
+.btn-cont>* {
+    font-size: 4rem;
+    color: rgba(255, 255, 0, 0.482);
+    transition: all 0.8s ease;
+
+}
+
+.btn-cont>*:hover {
+    font-size: 4rem;
+    color: yellow;
+    transition: all 0.8s ease;
 
 }
