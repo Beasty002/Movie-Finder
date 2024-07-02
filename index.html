@@ -4,178 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+        integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>MoviesT</title>
     <style>
-        :root {
-            --main-width: 1250px;
-            --body-bg: #121212;
-            --bg-color: #181818;
-            font-family: "Poppins", sans-serif;
-
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--body-bg);
-        }
-
-        header {
-            background-color: var(--bg-color);
-            color: white;
-            padding: 20px 80px;
+        #searchResults {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        #logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        #searchBar {
-            flex: 1;
-            font-size: 1rem;
-            padding: 0.4em 0.8em;
-            border-radius: 60px;
-            outline: none;
-            border: none;
-            font-weight: 500;
-            min-width: 300px;
-        }
-
-        #searchBar::placeholder {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #000;
-        }
-
-        main {
-            color: #FFF;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 40px;
-
-            .container {
-                width: var(--main-width);
-            }
-        }
-
-        .movies-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            overflow: hidden;
-            gap: 18px;
-
-            .movie {
-                cursor: pointer;
-                overflow: hidden;
-                width: 280px;
-                display: flex;
-                flex-direction: column;
-                flex-shrink: 0;
-
-                figure {
-                    position: relative;
-                    overflow: hidden;
-                    border-radius: 10px;
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        transition: all 0.5s ease;
-                    }
-
-                    .overlay {
-                        background-color: rgba(18, 18, 18, 0.8);
-                        backdrop-filter: blur(1px);
-                        border-radius: 10px;
-
-                        height: 100%;
-                        position: absolute;
-                        bottom: 0;
-                        left: -100%;
-                        width: 100%;
-                        overflow: hidden;
-                        color: #fff;
-                        display: flex;
-                        align-items: end;
-                        transition: left 0.3s ease;
-
-                        .content {
-                            position: relative;
-                            padding: 10px;
-                            width: 280px;
-                            padding-left: 30px;
-                            height: 35%;
-
-
-                        }
-
-                    }
-                }
-
-                .movie-rating {
-                    margin-left: 10px;
-
-                    margin-top: 8px;
-                }
-
-                .movie-title {
-                    font-weight: 500;
-                    font-size: 1.1rem;
-                    margin-left: 10px;
-
-                    margin-top: 0px;
-                }
-
-            }
-        }
-
-        .content p {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .content::before {
-            content: "";
-            position: absolute;
-            left: 10px;
-            background-color: red;
-            width: 8px;
-            top: 15px;
-            height: 50px;
-        }
-
-        .movie:hover {
-            figure {
-                img {
-                    transform: scale(1.1);
-                }
-
-                .overlay {
-                    left: 0;
-                }
-            }
-        }
-
-        .tv.container {
-            margin-top: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
     </style>
 </head>
@@ -183,7 +27,8 @@
 <body>
 
     <header>
-        <span id="logo">MoviesT</span>
+
+        <span id="logo"><a href="index.html">MoviesT</a></span>
         <nav>
             <form action="">
                 <input type="text" placeholder="Search..." id="searchBar">
@@ -191,9 +36,21 @@
         </nav>
     </header>
     <main>
+        <section class="container results">
+            <h1>Showing Results for <span class="search-value">"The Boys"</span></h1>
+            <div id="searchResults">
+
+            </div>
+        </section>
         <section class="container">
             <h2>Latest Movies</h2>
             <div class="movies-container" id="latestContainer">
+                <button class="btn-cont left" onclick="scrollLeftt(this)">
+                    <i class='bx bx-left-arrow-circle move-btn'></i>
+                </button>
+                <button class="btn-cont right" onclick="scrollRight(this)"><i
+                        class='bx bx-right-arrow-circle move-btn'></i></button>
+
                 <!-- <div class="movie">
                     <figure> <img src="https://image.tmdb.org/t/p/w500//j886YEkIUsiImY53px5VHKD4lRa.jpg" alt="">
                         <div class="overlay">
@@ -201,77 +58,30 @@
                                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit tenetur quos ducimus
                                     tempora molestias officiis. Enim quidem exercitationem aperiam temporibus facere
                                     similique, rem ex sapiente assumenda autem doloribus veritatis cupiditate.</p>
+                                </div>
                             </div>
-                        </div>
-                    </figure>
+                        </figure>
                     <span class="movie-rating">⭐ 5.0</span>
                     <h3 class="movie-title">Ultra Man</h3>
-
-                </div>
-                <div class="movie">
-                    <figure> <img src="https://image.tmdb.org/t/p/w500//j886YEkIUsiImY53px5VHKD4lRa.jpg" alt="">
-                        <div class="overlay">
-                            <div class="content">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit tenetur quos ducimus
-                                    tempora molestias officiis. Enim quidem exercitationem aperiam temporibus facere
-                                    similique, rem ex sapiente assumenda autem doloribus veritatis cupiditate.</p>
-                            </div>
-                        </div>
-                    </figure>
-                    <span class="movie-rating">⭐ 5.0</span>
-                    <h3 class="movie-title">Ultra Man</h3>
-
-                </div>
-                <div class="movie">
-                    <figure> <img src="https://image.tmdb.org/t/p/w500//j886YEkIUsiImY53px5VHKD4lRa.jpg" alt="">
-                        <div class="overlay">
-                            <div class="content">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit tenetur quos ducimus
-                                    tempora molestias officiis. Enim quidem exercitationem aperiam temporibus facere
-                                    similique, rem ex sapiente assumenda autem doloribus veritatis cupiditate.</p>
-                            </div>
-                        </div>
-                    </figure>
-                    <span class="movie-rating">⭐ 5.0</span>
-                    <h3 class="movie-title">Ultra Man</h3>
-
-                </div>
-                <div class="movie">
-                    <figure> <img src="https://image.tmdb.org/t/p/w500//j886YEkIUsiImY53px5VHKD4lRa.jpg" alt="">
-                        <div class="overlay">
-                            <div class="content">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit tenetur quos ducimus
-                                    tempora molestias officiis. Enim quidem exercitationem aperiam temporibus facere
-                                    similique, rem ex sapiente assumenda autem doloribus veritatis cupiditate.</p>
-                            </div>
-                        </div>
-                    </figure>
-                    <span class="movie-rating">⭐ 5.0</span>
-                    <h3 class="movie-title">Ultra Man</h3>
-
-                </div>
-                <div class="movie">
-                    <figure> <img src="https://image.tmdb.org/t/p/w500//j886YEkIUsiImY53px5VHKD4lRa.jpg" alt="">
-                        <div class="overlay">
-                            <div class="content">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit tenetur quos ducimus
-                                    tempora molestias officiis. Enim quidem exercitationem aperiam temporibus facere
-                                    similique, rem ex sapiente assumenda autem doloribus veritatis cupiditate.</p>
-                            </div>
-                        </div>
-                    </figure>
-                    <span class="movie-rating">⭐ 5.0</span>
-                    <h3 class="movie-title">Ultra Man</h3>
-
+                    
                 </div> -->
             </div>
         </section>
         <section class="container tv">
             <h2>Latest TVShow</h2>
             <div class="movies-container" id="latestTVContainer">
+                <button class="btn-cont left" onclick="scrollLeftt(this)">
+                    <i class='bx bx-left-arrow-circle move-btn'></i>
+                </button>
+                <button class="btn-cont right" onclick="scrollRight(this)"><i
+                        class='bx bx-right-arrow-circle move-btn'></i></button>
 
             </div>
         </section>
+        <section class="container trending">
+            <h2>Trending</h2>
+        </section>
+
     </main>
 
 
@@ -280,79 +90,7 @@
 
 
 
-    // document.querySelector(".arrow-left").addEventListener("click", scrollLeft);
-    // document.querySelector(".arrow-right").addEventListener("click", scrollRight);
-    // function scrollRight() {
-    //     let latestCont = document.getElementById('latestCont');
-    //     latestCont.scrollBy({
-    //         left: 300, // Adjust this value as needed
-    //         behavior: 'smooth'
-    //     });
-    // }
-    // function scrollLeft() {
-    //     let latestCont = document.getElementById('latestCont');
-    //     latestCont.scrollBy({
-    //         left: -300, // Adjust this value as needed
-    //         behavior: 'smooth'
-    //     });
-    // }
-    const API_KEY = "api_key=8c72c95a59121aae424474da628b54d2";
-    const BASE_URL = "https://api.themoviedb.org/3";
-    const IMG_URL = "https://image.tmdb.org/t/p/w500/"
-    const API_URL = BASE_URL + "movie/latest"
-    const latestM = document.getElementById("latestContainer")
-    const latestT = document.getElementById("latestTVContainer")
-    showLatest();
-    showLatestTV();
-    async function showLatest() {
-        // const res = await fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=8c72c95a59121aae424474da628b54d2");
-        const res = await fetch(`${BASE_URL}/movie/now_playing?${API_KEY}`);
-        const data = await res.json();
-        data.results.forEach(element => {
-            let movie = document.createElement("div");
-            movie.classList.add("movie");
-            let container = `
-    <figure>
-        <img src="${IMG_URL + element.poster_path}" alt="${element.title}">
-        <div class="overlay">
-            <div class="content">
-                <p>${element.overview}</p>
-            </div>
-        </div>
-    </figure>
-    <span class="movie-rating">⭐ ${element.vote_average.toFixed(1)}</span>
-    <h3 class="movie-title">${element.title}</h3>
-`;
-            movie.innerHTML = container;
-            latestM.appendChild(movie);
-        });
-    }
-    async function showLatestTV() {
-        const res = await fetch(`${BASE_URL}/discover/tv?${API_KEY}`);
-        const data = await res.json();
-        console.log(data)
-        data.results.forEach(element => {
-            let movie = document.createElement("div");
-            movie.classList.add("movie");
-            let container = `
-            <figure>
-                <img src="${IMG_URL + element.poster_path}" alt="${element.original_name}">
-                <div class="overlay">
-                    <div class="content">
-                        <p>${element.overview}</p>
-                    </div>
-                </div>
-            </figure>
-            <span class="movie-rating">⭐ ${element.vote_average.toFixed(1)}</span>
-            <h3 class="movie-title">${element.original_name}</h3>
-        `;
-            movie.innerHTML = container;
-            latestT.appendChild(movie);
-        });
 
-
-
-    }
 
 </script>
 
