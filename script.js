@@ -102,7 +102,13 @@ form.addEventListener("submit", (e) => {
     const searchTerm = search.value;
     if (searchTerm) {
         searchR.innerHTML = ""
-
+        document.querySelector("#searchVal").innerText = `${searchTerm}`
+        const cont = document.querySelectorAll(".container");
+        cont.forEach(element => {
+            element.style.display = "none"
+        });
+        const resultContainer = document.querySelector(".results");
+        resultContainer.style.display = "block";
         async function search() {
             const res = await fetch(`${MOVIE_SEARCH_URL}&query=${searchTerm}`);
             const data = await res.json();

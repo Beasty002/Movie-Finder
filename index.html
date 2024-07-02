@@ -20,6 +20,15 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        #searchVal {
+            color: orange;
+        }
+
+        .container.results {
+            display: none;
         }
     </style>
 </head>
@@ -37,8 +46,8 @@
     </header>
     <main>
         <section class="container results">
-            <h1>Showing Results for <span class="search-value">"The Boys"</span></h1>
-            <div id="searchResults">
+            <h1>Showing Results for "<span id="searchVal">The Boys</span>"</h1>
+            <div class="movies-container" id="searchResults">
 
             </div>
         </section>
