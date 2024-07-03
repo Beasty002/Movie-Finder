@@ -22,36 +22,64 @@
             font-family: 'poppins';
         }
 
-        body {
-            min-height: 100dvh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+
 
         h1 {
             font-size: 6rem;
             color: #fff;
         }
+
+        img {
+            position: absolute;
+            display: block;
+            width: 100dvw;
+            height: 100dvh;
+            object-fit: fill;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Site under construction</h1>
 
 </body>
 <script>
+    const API_KEY = "api_key=8c72c95a59121aae424474da628b54d2";
+    const BASE_URL = "https://api.themoviedb.org/3";
+    const IMG_URL = "https://image.tmdb.org/t/p/original/"
+
+    let url = ""
     document.addEventListener('DOMContentLoaded', () => {
-        console.log(window.location);
-
-
-
+        // console.log(window.location);
+        const params = new URLSearchParams(window.location.search); //window.location returns the whole link of the page wheras the window.location.search just gives us the query involved in the link like the text after the question mark search
+        // console.log(params.get('type')) //here we can get the value involved in the query like type=movie it search for the query with "type" and returns its value i.e movie
         //for custom url use the one belowm
         // let loc = "http://127.0.0.1:5500/searchpage.html?id=m786892&type=movie";
         // const url = new URL(loc)
         // console.log(url.search)
+        let type = params.get('type');
+        let id = params.get('id');
+        id = id.slice(1);
+        console.log(id)
+        loadContent(type, id)
+
+
 
     })
+
+    function loadContent(type, id) {
+        if (type === "movie") {
+            url = `${BASE_URL}/movie/${id}?${API_KEY}` //here we are using the api to get the data of the movie with the id given in the url
+        }
+        else if (type === "tv") {
+            url = `${BASE_URL}/tv/${id}?${API_KEY}` //here we are using the api to get the data of the tv show with the id given in the
+        }
+        fetch(url).then(res => res.json()).then(data => {
+            console.log(data);
+            let img = document.createElement("img");
+            img.src = IMG_URL + data.backdrop_path;
+            document.body.appendChild(img)
+        })
+    } 
 </script>
 
 </html>

@@ -18,8 +18,8 @@ var url = ''
 var latesturl = ''
 
 
-getEntertainment("latestT", undefined);
-getEntertainment("latestM", undefined);
+// getEntertainment("latestT", undefined);
+// getEntertainment("latestM", undefined);
 getEntertainment("trending", undefined);
 
 
@@ -63,7 +63,7 @@ function getEntertainment(type, searchTerm) {
 
 function show(data, type) {
     data.forEach(el => {
-        console.log(el)
+        console.log(el);
         let card = document.createElement("div");
         card.classList.add("card");
         card.id = "c" + el.id;
@@ -102,17 +102,17 @@ function show(data, type) {
             else {
                 searchResults.appendChild(card);
             }
-            movieDetail(card);
+            details(card, el.media_type);
         }
     });
 
 }
 
-function movieDetail(card) {
+function details(card, type) {
     let figure = card.querySelector("figure");
     figure.addEventListener("click", () => {
         //sending the id to next page in the url so that another page can use the id to show more details about the movie
-        window.location.href = `moviepage.html?id=${card.id}`
+        window.location.href = `moviepage.html?id=${card.id}&type=${type}`
     })
 }
 
