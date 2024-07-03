@@ -8,19 +8,27 @@
         integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="script2.js" defer></script>
     <title>MoviesT</title>
     <style>
-
+        .errMsg {
+            display: none;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
 <body>
+    <h1 class="errMsg">Sorry No results Found</h1>
 
     <header>
 
@@ -36,7 +44,6 @@
     </header>
     <main>
         <section class="container results">
-            <h1>Showing Results for "<span id="searchVal">The Boys</span>"</h1>
             <div class="movies-container" id="searchResults">
 
             </div>
@@ -44,9 +51,9 @@
         <section class="container">
             <h2>Latest Movies</h2>
             <div class="movies-container" id="latestContainer">
-                <button class="btn-cont left" onmousedown="scrollLeftt(this)">
+                <button class="btn-cont left" onmousedown="scrollCard(this)">
                     <i class='bx bx-chevron-left'></i> </button>
-                <button class="btn-cont right" onmousedown="scrollRight(this)"><i
+                <button class="btn-cont right" onmousedown="scrollCard(this)"><i
                         class='bx bx-chevron-right'></i></button>
 
                 <!-- <div class="movie">
@@ -68,9 +75,9 @@
         <section class="container tv">
             <h2>Latest TVShow</h2>
             <div class="movies-container" id="latestTVContainer">
-                <button class="btn-cont left" onmousedown="scrollLeftt(this)">
+                <button class="btn-cont left" onmousedown="scrollCard(this)">
                     <i class='bx bx-chevron-left'></i> </button>
-                <button class="btn-cont right" onmousedown="scrollRight(this)"><i
+                <button class="btn-cont right" onmousedown="scrollCard(this)"><i
                         class='bx bx-chevron-right'></i></button>
 
             </div>
@@ -93,6 +100,7 @@
             })
         })
     }, 5000)
+
     // setTimeout(() => {
     //     const elId = document.querySelectorAll(".movie figure");
     //     elId.forEach(el => {

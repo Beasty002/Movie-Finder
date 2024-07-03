@@ -142,6 +142,7 @@ main {
     flex-wrap: wrap;
     margin-top: 30px;
     row-gap: 30px;
+    justify-content: start;
 }
 
 .movies-container {
@@ -151,7 +152,7 @@ main {
     overflow: hidden;
     gap: 18px;
 
-    .movie {
+    .card {
         cursor: pointer;
         overflow: hidden;
         width: 280px;
@@ -235,7 +236,7 @@ main {
     height: 50px;
 }
 
-.movie:hover {
+.card:hover {
     figure {
         img {
             transform: scale(1.1);
