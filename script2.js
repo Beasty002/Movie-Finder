@@ -18,8 +18,8 @@ var url = ''
 var latesturl = ''
 
 
-// getEntertainment("latestT", undefined);
-// getEntertainment("latestM", undefined);
+getEntertainment("latestM", undefined);
+getEntertainment("latestT", undefined);
 getEntertainment("trending", undefined);
 
 
@@ -63,14 +63,14 @@ function getEntertainment(type, searchTerm) {
 
 function show(data, type) {
     data.forEach(el => {
-        console.log(el);
+        console.log(el)
         let card = document.createElement("div");
         card.classList.add("card");
         card.id = "c" + el.id;
         let title = el.name || el.original_name || el.title; //for movie the title is original_name and for movie it is title so it will check if one exists if not then it will take another
         let vote = el.vote_average || "N/A";
-        const types = typeof (vote);
-        if (types == "number") {
+        const typeofVote = typeof (vote);
+        if (typeofVote == "number") {
             vote = vote.toFixed(1);
         }
         // html code for the movie/tv show card
@@ -88,21 +88,26 @@ function show(data, type) {
 
 
         card.innerHTML = container;
+        let media_type = ""
         //checking what type the movie is and appending to the respective container  according to it 
         if (el.poster_path) {
             if (type === 'latestM') {
                 latestM.appendChild(card);
+                media_type = "movie";
             }
             else if (type === 'latestT') {
                 latestT.appendChild(card);
+                media_type = "tv"
             }
             else if (type === "trending") {
+                media_type = el.media_type;
                 trending.appendChild(card);
             }
             else {
+                media_type = el.media_type;
                 searchResults.appendChild(card);
             }
-            details(card, el.media_type);
+            details(card, media_type);
         }
     });
 
