@@ -6,6 +6,7 @@ const API_URL = BASE_URL + "movie/latest"
 const MOVIE_SEARCH_URL = BASE_URL + '/search/multi?' + '&language=en-US&' + API_KEY
 const latestM = document.getElementById("latestContainer")
 const latestT = document.getElementById("latestTVContainer")
+const trending = document.getElementById("trendingContainer")
 const searchR = document.getElementById("searchResults")
 const form = document.querySelector("form");
 const search = document.getElementById("searchBar");
@@ -19,6 +20,7 @@ var latesturl = ''
 
 getEntertainment("latestT", undefined);
 getEntertainment("latestM", undefined);
+getEntertainment("trending", undefined);
 
 
 function getEntertainment(type, searchTerm) {
@@ -29,12 +31,17 @@ function getEntertainment(type, searchTerm) {
     else if (type === 'latestT') {
         url = `${BASE_URL}/discover/tv?${API_KEY}`
     }
+    else if (type === "trending") {
+        url = `${BASE_URL}/trending/all/day?${API_KEY}`
+    }
     else if (type === "search" && searchTerm) {
         url = `${MOVIE_SEARCH_URL}&query=${searchTerm}`
     }
+
     else {
         console.log("error")
     }
+
     fetch(url).then(res => res.json()).then(data => {
         const h1 = document.querySelector(".errMsg");
         if (data.results.length != 0) {
@@ -88,6 +95,9 @@ function show(data, type) {
             }
             else if (type === 'latestT') {
                 latestT.appendChild(card);
+            }
+            else if (type === "trending") {
+                trending.appendChild(card);
             }
             else {
                 searchResults.appendChild(card);
