@@ -38,7 +38,7 @@
             align-items: center;
         }
 
-        .container {
+        .background-img {
             position: relative;
             width: var(--main-width);
         }
@@ -55,7 +55,8 @@
             width: 280px;
         }
 
-        .container1 {
+        .detail-container {
+            width: 60%;
             z-index: 5;
             margin-top: 35%;
             display: flex;
@@ -65,7 +66,126 @@
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(4px);
+        }
 
+        #title {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+
+        }
+
+        #rating {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+
+            #ratingQty {
+                font-size: 0.8rem;
+                color: #bebebeba;
+            }
+        }
+
+        .type-genre {
+            display: flex;
+            gap: 10px;
+        }
+
+        #genre {
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            position: relative;
+
+            a {
+                text-decoration: none;
+                color: #bebebe;
+            }
+
+            a:hover {
+                color: #fff;
+            }
+
+        }
+
+        #genre::before {
+            content: "";
+            height: 8px;
+            width: 8px;
+            background-color: #bebebe;
+            border-radius: 50%;
+            position: absolute;
+            left: 0px;
+        }
+
+        #genre a:not(:first-child)::before {
+            content: ", ";
+            width: 20px;
+
+        }
+
+        .overview-container {
+            margin-top: 20px;
+
+            h2 {
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+
+            p {
+                color: #ffffffbc;
+            }
+
+            #overview {
+                transition: all 0.2s ease;
+            }
+
+            #readMore {
+                cursor: pointer;
+                padding: 0;
+                border: none;
+                background-color: transparent;
+                color: rgb(53, 191, 255);
+                /* color: rgba(255, 151, 40, 0.815); */
+            }
+        }
+
+        #overview.active {
+            display: -webkit-box;
+            --webkit-line-clamp: 2;
+            --webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .extra-details {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table tr>* {
+            text-align: left;
+            font-size: 1.02rem;
+            padding: 6px 0px;
+        }
+
+        table tr:not(:last-child)>* {
+            border-bottom: 1px solid rgba(128, 128, 128, 0.532);
+        }
+
+        table tr th {
+            font-weight: 500;
+        }
+
+        table tr td {
+            padding-left: 40px;
+            color: rgb(213, 138, 0);
+        }
+
+        #stars span:not(:first-child)::before {
+            content: ", ";
+            color: #fff;
         }
     </style>
 </head>
@@ -73,17 +193,57 @@
 <body>
     <main>
 
-        <div class="container">
+        <div class="background-img">
             <img src="" alt="" id="background">
         </div>
-        <div class="container1">
+        <div class="detail-container">
             <figure><img src="" alt="" id="poster"></figure>
             <div class="info">
-                <h1 id="title">Movie</h1>
-                <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-                <p>
-                <p id="release">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-                <p>
+                <h1 id="title">Oshinoko</h1>
+                <p id="rating">⭐<span id="ratingVal"></span><span id="ratingQty"></span></p>
+                <section class="type-genre">
+                    <div class="type">
+                        TV series
+                    </div>
+                    <div id="genre">
+
+                    </div>
+                </section>
+                <div class="overview-container">
+                    <h2>Overview</h2>
+                    <p id="overview" class="active">
+                    <p>
+                        <button id="readMore" onclick="toggleOverview(this)">Read More</button>
+                </div>
+                <section class="extra-details">
+                    <table>
+
+
+                        <tr>
+                            <th>Creator</th>
+                            <td id="creator">Kibutsuji Mujan</td>
+                        </tr>
+                        <tr>
+                            <th>Stars</th>
+                            <td id="stars"></td>
+                        </tr>
+                        <tr>
+                            <th>Seasons</th>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <th>Episodes</th>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <th>Release Date</th>
+                            <td id="releaseDate">2024 - 4 -3</td>
+                        </tr>
+
+
+                    </table>
+                </section>
+
             </div>
         </div>
     </main>
@@ -93,8 +253,19 @@
     const API_KEY = "api_key=8c72c95a59121aae424474da628b54d2";
     const BASE_URL = "https://api.themoviedb.org/3";
     const IMG_URL = "https://image.tmdb.org/t/p/original/"
+    const backgroundImg = document.getElementById("background");
+    const poster = document.getElementById("poster");
+    const title = document.getElementById("title");
+    const rating = document.getElementById("ratingVal");
+    const ratingQty = document.getElementById("ratingQty");
+    const overview = document.getElementById("overview");
+    const genre = document.getElementById("genre");
+    const creator = document.getElementById("creator");
+    const stars = document.getElementById("stars");
+    const releaseDate = document.getElementById("releaseDate");
 
-    let url = ""
+
+    let url = "";
     document.addEventListener('DOMContentLoaded', () => {
         // console.log(window.location);
         const params = new URLSearchParams(window.location.search); //window.location returns the whole link of the page wheras the window.location.search just gives us the query involved in the link like the text after the question mark search
@@ -106,7 +277,6 @@
         let type = params.get('type');
         let id = params.get('id');
         id = id.slice(1);
-        console.log(id)
         loadContent(type, id);
     })
 
@@ -118,33 +288,86 @@
             url = `${BASE_URL}/tv/${id}?${API_KEY}` //here we are using the api to get the data of the tv show with the id given in the
         }
         fetch(url).then(res => res.json()).then(data => {
-            let img = document.querySelector("img");
-            img.src = IMG_URL + data.backdrop_path;
-            let img1 = document.querySelector("#poster");
-            img1.src = IMG_URL + data.poster_path;
+            fillData(type, data);
         })
+        // let director = fetch(`${BASE_URL}/movie/${id}/credits?${API_KEY}`).then(res => res.json()).then(data => {
+        //     for (let i = 0; i <= data.crew.length; i++) {
+        //         if (data.crew[i].known_for_department === "Directing") {
+        //             return data.crew[i].name;
+        //         }
+        //     }
+        // });
+        // director.then(data => {
+        //     director = data
+        // }).catch(error => {
+        //     director = "N/A"
+        // })
+
+        // setTimeout(() => {
+        //     console.log(director)
+
+        // }, 2000)
+        getcredits(id, type);
+
+    }
+
+    async function getcredits(id, type) {
+        let res = await fetch(`${BASE_URL}/${type}/${id}/credits?${API_KEY}`);
+        let data = await res.json();
+        let directorArr = data.crew.filter((el) => {
+            return el.known_for_department === "Directing";
+        })
+        console.log(directorArr)
+        creator.innerText = directorArr[0].name;
+        for (i = 0; i < 4; i++) {
+            let span = document.createElement("span")
+            span.innerText = data.cast[i].name;
+            span.classList.add("cast-name");
+            stars.appendChild(span)
+
+        }
+    }
+
+    function fillData(type, data) {
+        let titleName = data.name || data.original_name || data.title;
+        title.innerText = titleName;
+        appendGenre(data.genres);
+        let vote = data.vote_average || "N/A";
+        const typeofVote = typeof (vote);
+        if (typeofVote == "number") {
+            vote = vote.toFixed(1);
+            ratingQty.innerText = `(${data.vote_count})`;
+        }
+        rating.innerText = vote;
+        overview.innerText = data.overview;
 
 
-
-        let director = fetch(`${BASE_URL}/tv/${id}/credits?${API_KEY}`).then(res => res.json()).then(data => {
-            for (let i = 0; i <= data.crew.length; i++) {
-                if (data.crew[i].known_for_department === "Directing") {
-                    return data.crew[i].name;
-                }
-            }
+        let img = document.querySelector("img");
+        img.src = IMG_URL + data.backdrop_path;
+        let img1 = document.querySelector("#poster");
+        img1.src = IMG_URL + data.poster_path;
+    }
+    function appendGenre(g) {
+        g.forEach(element => {
+            let linkTag = document.createElement("a");
+            linkTag.id = element.id;
+            linkTag.innerText = element.name;
+            genre.appendChild(linkTag)
         });
-        director.then(data => {
-            director = data
-        }).catch(error => {
-            director = "N/A"
-        })
-        setTimeout(() => {
-            console.log(director)
+    }
 
-        }, 2000)
+    function toggleOverview(e) {
+        let overview = document.querySelector("#overview");
+        overview.classList.toggle("active");
+        if (e.innerText === "Read More") {
+            e.innerText = "Read Less"
+        }
+        else {
+            e.innerText = "Read More"
+        }
 
+    }
 
-    } 
 </script>
 
 </html>
