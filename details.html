@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+        integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/details.css">
+    <script src="./js/details.js" defer></script>
+    <title>MoviesT</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <span id="logo"><a href="index.html"><img src="./logo.png" alt=""></a></span>
+            <nav>
+                <form action="">
+                    <input type="text" placeholder="Search..." id="searchBar">
+                    <button type="submit" id="searchBtn"><i class='bx bx-search'></i>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="background-img">
+            <img src="" alt="" id="background">
+        </div>
+        <div class="detail-container">
+            <figure><img src="" alt="" id="poster"></figure>
+            <div class="info">
+                <h1 id="title">Oshinoko</h1>
+                <p id="rating">⭐<span id="ratingVal"></span><span id="ratingQty"></span></p>
+                <section class="type-genre">
+                    <div class="type">
+                        TV series
+                    </div>
+                    <div id="genre">
+
+                    </div>
+                </section>
+                <div class="overview-container">
+                    <h2>Overview</h2>
+                    <p id="overview" class="active">
+                    <p>
+                        <button id="readMore" onclick="toggleOverview(this)">Read More</button>
+                </div>
+                <section class="extra-details">
+                    <table id="detailTable">
+                        <tr>
+                            <th>Creator</th>
+                            <td id="creator">Kibutsuji Mujan</td>
+                        </tr>
+                        <tr>
+                            <th>Stars</th>
+                            <td id="stars"></td>
+                        </tr>
+
+                        <tr id="relContainer">
+                            <th>Release Date</th>
+                            <td id="releaseDate">2024 - 4 -3</td>
+                        </tr>
+                    </table>
+                </section>
+
+            </div>
+        </div>
+        <section id="recommendedSection">
+            <h2>Recommended</h2>
+            <div class="movies-container" id="recommendations">
+                <button class="btn-cont left" onmousedown="scrollCard(this)">
+                    <i class='bx bx-chevron-left'></i> </button>
+                <button class="btn-cont right" onmousedown="scrollCard(this)"><i
+                        class='bx bx-chevron-right'></i></button>
+            </div>
+        </section>
+        <section id="loader">
+            <div class="loader-spinner"></div>
+        </section>
+    </main>
+
+
+</body>
+<script>
+
+
+</script>
+
+</html>

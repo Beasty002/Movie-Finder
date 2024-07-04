@@ -114,7 +114,7 @@ function details(card, type) {
     let figure = card.querySelector("figure");
     figure.addEventListener("click", () => {
         //sending the id to next page in the url so that another page can use the id to show more details about the movie
-        window.location.href = `moviepage.html?id=${card.id}&type=${type}`
+        window.location.href = `./../details.html?id=${card.id}&type=${type}`
     })
 }
 
@@ -188,7 +188,7 @@ var lastScrollTop = 0;
 nav = document.querySelector("header");
 window.addEventListener("scroll", () => {
     console.clear();
-    var scrollTop = window.pageYOffset; //
+    var scrollTop = window.scrollY; //
     if (scrollTop > lastScrollTop) {
         nav.style.top = "-100px"
     }
