@@ -14,6 +14,8 @@ const stars = document.getElementById("stars");
 const releaseDate = document.getElementById("releaseDate");
 const relContainer = document.getElementById("relContainer");
 const recommendedSection = document.getElementById("recommendations");
+const form = document.querySelector("form");
+const search = document.getElementById("searchBar");
 let creatorFound = false;
 
 
@@ -66,13 +68,12 @@ function addSeasonEpisode(data) {
     episodesRow.innerHTML = `<th>Episodes</th><td>${epNum}</td>`;
     table.insertBefore(episodesRow, releaseRow);
     table.insertBefore(seasonsRow, episodesRow);
-
 }
 
 async function getcredits(id, type) {
     let res = await fetch(`${BASE_URL}/${type}/${id}/credits?${API_KEY}`);
     let data = await res.json();
-    if (creatorFound = false) {
+    if (!creatorFound) {
         let directorArr = data.crew.filter((el) => {
             return el.known_for_department === "Directing";
         })
@@ -143,7 +144,6 @@ function toggleOverview(e) {
 function recommendations(id, type) {
     let url = `https://api.themoviedb.org/3/${type}/${id}/recommendations?${API_KEY}`
     fetch(url).then(res => res.json()).then(data => {
-        console.log(data.results);
         if (data.results.length === 0) {
             document.querySelector("#recommendedSection").style.display = "none";
         }
@@ -218,7 +218,6 @@ function updateVisibility(e) {
 var lastScrollTop = 0;
 nav = document.querySelector("header");
 window.addEventListener("scroll", () => {
-    console.clear();
     var scrollTop = window.pageYOffset; //
     if (scrollTop > lastScrollTop) {
         nav.style.top = "-100px"
@@ -226,7 +225,6 @@ window.addEventListener("scroll", () => {
     else {
         nav.style.top = "0px"
     }
-    console.log(`Current is : ${lastScrollTop}        &     scroll Top is ${scrollTop}`)
     lastScrollTop = scrollTop;
 })
 
@@ -238,20 +236,7 @@ form.addEventListener("submit", e => {
     e.preventDefault();
     const searchTerm = search.value;
     if (searchTerm) {
-        searchR.innerHTML = "";
-        const h1 = document.createElement("h1");
-        const searchMsg = `Showing Results for "<span id="searchVal">${searchTerm}</span>"`
-        h1.innerHTML = searchMsg;
-        cont.forEach(el => {
-            el.style.display = "none"
-        });
-        const resultContainer = document.querySelector(".results");
-        resultContainer.style.display = "block";
-        const existH1 = resultContainer.querySelector("h1");
-        if (existH1) {
-            resultContainer.removeChild(existH1);
-        }
-        resultContainer.prepend(h1);
-        getEntertainment("search", searchTerm)
+        console.log(searchTerm)
+        window.location.href = `./../searchpage.html?search=${search.value}`
     }
 })

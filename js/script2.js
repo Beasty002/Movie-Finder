@@ -18,12 +18,12 @@ var url = ''
 var latesturl = ''
 
 
-getEntertainment("latestM", undefined);
-getEntertainment("latestT", undefined);
-getEntertainment("trending", undefined);
+getEntertainment("latestM");
+getEntertainment("latestT");
+getEntertainment("trending");
 
 
-function getEntertainment(type, searchTerm) {
+function getEntertainment(type) {
     //fixing the url to fetch based on the type
     if (type === 'latestM') {
         url = `${BASE_URL}/movie/now_playing?${API_KEY}`
@@ -34,9 +34,7 @@ function getEntertainment(type, searchTerm) {
     else if (type === "trending") {
         url = `${BASE_URL}/trending/all/day?${API_KEY}`
     }
-    else if (type === "search" && searchTerm) {
-        url = `${MOVIE_SEARCH_URL}&query=${searchTerm}`
-    }
+
 
     else {
         console.log("error")
@@ -54,12 +52,7 @@ function getEntertainment(type, searchTerm) {
 
     })
 }
-// function errorMsg() {
-//     const h1 = document.createElement("h1");
-//     h1.textContent = "No results found"
-//     h1.classList.add("errMsg");
-//     document.body.appendChild(h1);
-// }
+
 
 function show(data, type) {
     data.forEach(el => {
@@ -101,9 +94,6 @@ function show(data, type) {
             else if (type === "trending") {
                 trending.appendChild(card);
             }
-            else {
-                searchResults.appendChild(card);
-            }
             details(card, media_type);
         }
     });
@@ -123,23 +113,7 @@ form.addEventListener("submit", e => {
     e.preventDefault();
     const searchTerm = search.value;
     if (searchTerm) {
-        // searchR.innerHTML = "";
-        // const h1 = document.createElement("h1");
-        // const searchMsg = `Showing Results for "<span id="searchVal">${searchTerm}</span>"`
-        // h1.innerHTML = searchMsg;
-        // cont.forEach(el => {
-        //     el.style.display = "none"
-        // });
-        // const resultContainer = document.querySelector(".results");
-        // resultContainer.style.display = "block";
-        // const existH1 = resultContainer.querySelector("h1");
-        // if (existH1) {
-        //     resultContainer.removeChild(existH1);
-        // }
-        // resultContainer.prepend(h1);
-        // getEntertainment("search", searchTerm)
         window.location.href = `./../searchpage.html?search=${search.value}`
-
     }
 })
 
@@ -186,7 +160,6 @@ function updateVisibility(e) {
 var lastScrollTop = 0;
 nav = document.querySelector("header");
 window.addEventListener("scroll", () => {
-    console.clear();
     var scrollTop = window.scrollY; //
     if (scrollTop > lastScrollTop) {
         nav.style.top = "-100px"

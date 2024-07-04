@@ -310,16 +310,6 @@ main {
     transform: translate(-50%, -50%);
 }
 
-#loader {
-    position: fixed;
-    top: 80px;
-    height: calc(100% - 80px);
-    width: 100dvw;
-    background-color: #181818;
-    z-index: 99999;
-
-}
-
 .loader-spinner {
     position: absolute;
     top: 45%;
