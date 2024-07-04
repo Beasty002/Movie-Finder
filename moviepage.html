@@ -12,34 +12,81 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="stylee.css"> -->
     <script src="script.js" defer></script>
     <title>MoviesT</title>
     <style>
+        :root {
+            --main-width: 1250px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             font-family: 'poppins';
         }
 
-
-
-        h1 {
-            font-size: 6rem;
-            color: #fff;
+        body {
+            background-color: black;
         }
 
-        img {
-            position: absolute;
+
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            width: var(--main-width);
+        }
+
+        #background {
+            width: 100%;
             display: block;
-            width: 100dvw;
-            height: 100dvh;
             object-fit: fill;
+            filter: blur(0px);
+            position: absolute;
+        }
+
+        #poster {
+            width: 280px;
+        }
+
+        .container1 {
+            z-index: 5;
+            margin-top: 35%;
+            display: flex;
+            gap: 40px;
+            background-color: rgba(0, 0, 0, 0.533);
+            color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+
         }
     </style>
 </head>
 
 <body>
+    <main>
+
+        <div class="container">
+            <img src="" alt="" id="background">
+        </div>
+        <div class="container1">
+            <figure><img src="" alt="" id="poster"></figure>
+            <div class="info">
+                <h1 id="title">Movie</h1>
+                <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+                <p>
+                <p id="release">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+                <p>
+            </div>
+        </div>
+    </main>
 
 </body>
 <script>
@@ -60,10 +107,7 @@
         let id = params.get('id');
         id = id.slice(1);
         console.log(id)
-        loadContent(type, id)
-
-
-
+        loadContent(type, id);
     })
 
     function loadContent(type, id) {
@@ -74,11 +118,32 @@
             url = `${BASE_URL}/tv/${id}?${API_KEY}` //here we are using the api to get the data of the tv show with the id given in the
         }
         fetch(url).then(res => res.json()).then(data => {
-            console.log(data);
-            let img = document.createElement("img");
+            let img = document.querySelector("img");
             img.src = IMG_URL + data.backdrop_path;
-            document.body.appendChild(img)
+            let img1 = document.querySelector("#poster");
+            img1.src = IMG_URL + data.poster_path;
         })
+
+
+
+        let director = fetch(`${BASE_URL}/tv/${id}/credits?${API_KEY}`).then(res => res.json()).then(data => {
+            for (let i = 0; i <= data.crew.length; i++) {
+                if (data.crew[i].known_for_department === "Directing") {
+                    return data.crew[i].name;
+                }
+            }
+        });
+        director.then(data => {
+            director = data
+        }).catch(error => {
+            director = "N/A"
+        })
+        setTimeout(() => {
+            console.log(director)
+
+        }, 2000)
+
+
     } 
 </script>
 

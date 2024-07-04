@@ -137,8 +137,8 @@ main {
 }
 
 #searchResults {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     flex-wrap: wrap;
     margin-top: 30px;
     row-gap: 30px;

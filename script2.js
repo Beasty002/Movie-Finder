@@ -63,7 +63,6 @@ function getEntertainment(type, searchTerm) {
 
 function show(data, type) {
     data.forEach(el => {
-        console.log(el)
         let card = document.createElement("div");
         card.classList.add("card");
         card.id = "c" + el.id;
@@ -88,7 +87,7 @@ function show(data, type) {
 
 
         card.innerHTML = container;
-        let media_type = ""
+        let media_type = el.media_type;
         //checking what type the movie is and appending to the respective container  according to it 
         if (el.poster_path) {
             if (type === 'latestM') {
@@ -100,11 +99,9 @@ function show(data, type) {
                 media_type = "tv"
             }
             else if (type === "trending") {
-                media_type = el.media_type;
                 trending.appendChild(card);
             }
             else {
-                media_type = el.media_type;
                 searchResults.appendChild(card);
             }
             details(card, media_type);
