@@ -114,7 +114,7 @@ function details(card, type) {
     let figure = card.querySelector("figure");
     figure.addEventListener("click", () => {
         //sending the id to next page in the url so that another page can use the id to show more details about the movie
-        window.location.href = `./../details.html?id=${card.id}&type=${type}`
+        window.location.href = `details.html?id=${card.id}&type=${type}`
     })
 }
 
@@ -123,23 +123,22 @@ form.addEventListener("submit", e => {
     e.preventDefault();
     const searchTerm = search.value;
     if (searchTerm) {
-        searchR.innerHTML = "";
-        const h1 = document.createElement("h1");
-        const searchMsg = `Showing Results for "<span id="searchVal">${searchTerm}</span>"`
-        h1.innerHTML = searchMsg;
-        cont.forEach(el => {
-            el.style.display = "none"
-        });
-        const resultContainer = document.querySelector(".results");
-        resultContainer.style.display = "block";
-        const existH1 = resultContainer.querySelector("h1");
-        if (existH1) {
-            resultContainer.removeChild(existH1);
-        }
-        resultContainer.prepend(h1);
-        getEntertainment("search", searchTerm)
-
-
+        // searchR.innerHTML = "";
+        // const h1 = document.createElement("h1");
+        // const searchMsg = `Showing Results for "<span id="searchVal">${searchTerm}</span>"`
+        // h1.innerHTML = searchMsg;
+        // cont.forEach(el => {
+        //     el.style.display = "none"
+        // });
+        // const resultContainer = document.querySelector(".results");
+        // resultContainer.style.display = "block";
+        // const existH1 = resultContainer.querySelector("h1");
+        // if (existH1) {
+        //     resultContainer.removeChild(existH1);
+        // }
+        // resultContainer.prepend(h1);
+        // getEntertainment("search", searchTerm)
+        window.location.href = `./../searchpage.html?search=${search.value}`
 
     }
 })

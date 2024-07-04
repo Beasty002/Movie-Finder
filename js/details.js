@@ -84,7 +84,7 @@ async function getcredits(id, type) {
         span.classList.add("cast-name");
         stars.appendChild(span)
     }
-    await removeLoader();
+    removeLoader();
 }
 function removeLoader() {
     let loader = document.getElementById("loader");

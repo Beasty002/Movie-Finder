@@ -216,7 +216,6 @@ main {
 
 }
 
-#genre::before {}
 
 #genre a:not(:first-child)::before {
     content: ", ";
@@ -390,6 +389,16 @@ table tr td {
             left: 0;
         }
     }
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    background-color: red;
+    width: 8px;
+    top: 15px;
+    height: 50px;
 }
 
 .btn-cont {
