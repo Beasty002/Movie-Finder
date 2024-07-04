@@ -221,8 +221,9 @@ main {
 
 .content p {
     display: -webkit-box;
-    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    /* Number of lines to show */
     overflow: hidden;
 }
 

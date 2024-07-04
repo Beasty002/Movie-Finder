@@ -88,7 +88,6 @@
                     <i class='bx bx-chevron-left'></i> </button>
                 <button class="btn-cont right" onmousedown="scrollCard(this)"><i
                         class='bx bx-chevron-right'></i></button>
-
             </div>
         </section>
 
@@ -97,15 +96,15 @@
 
 </body>
 <script>
-    setTimeout(() => {
-        const elId = document.querySelectorAll(".movie figure");
-        const mo = "movie";
-        elId.forEach(el => {
-            el.addEventListener("click", () => {
-                window.location.href = `moviepage.html?id=${el.parentElement.id}&type=movie`
-            })
-        })
-    }, 5000)
+    // setTimeout(() => {
+    //     const elId = document.querySelectorAll(".movie figure");
+    //     const mo = "movie";
+    //     elId.forEach(el => {
+    //         el.addEventListener("click", () => {
+    //             window.location.href = `moviepage.html?id=${el.parentElement.id}&type=movie`
+    //         })
+    //     })
+    // }, 5000)
 
     // setTimeout(() => {
     //     const elId = document.querySelectorAll(".movie figure");
