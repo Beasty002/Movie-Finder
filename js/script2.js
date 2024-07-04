@@ -18,12 +18,23 @@ var url = ''
 var latesturl = ''
 
 
+
 getEntertainment("latestM");
 getEntertainment("latestT");
 getEntertainment("trending");
 
 
+function removeLoader() {
+    let loader = document.getElementById("loader");
+    loader.remove();
+    document.body.style.overflow = "scroll";
+    document.body.style.overflowX = "hidden";
+
+}
+
+
 function getEntertainment(type) {
+
     //fixing the url to fetch based on the type
     if (type === 'latestM') {
         url = `${BASE_URL}/movie/now_playing?${API_KEY}`
@@ -41,14 +52,10 @@ function getEntertainment(type) {
     }
 
     fetch(url).then(res => res.json()).then(data => {
-        const h1 = document.querySelector(".errMsg");
-        if (data.results.length != 0) {
-            show(data.results, type);
-            h1.style.display = "none";
-        }
-        else {
-            h1.style.display = "block";
-        }
+        show(data.results, type);
+        removeLoader();
+
+
 
     })
 }
@@ -106,6 +113,8 @@ function details(card, type) {
         //sending the id to next page in the url so that another page can use the id to show more details about the movie
         window.location.href = `details.html?id=${card.id}&type=${type}`
     })
+
+
 }
 
 

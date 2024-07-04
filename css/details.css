@@ -1,5 +1,6 @@
 :root {
     --main-width: 1250px;
+    --body-bg: #121212;
     --bg-color: #181818;
 
 }
@@ -8,12 +9,15 @@
     margin: 0;
     padding: 0;
     font-family: 'poppins';
+    text-decoration: none;
+    box-sizing: border-box;
+
 }
 
 body {
-    background-color: #121212;
-    padding-bottom: 40px;
+    background-color: var(--body-bg);
     overflow: hidden;
+    padding-bottom: 40px;
 }
 
 header {
@@ -63,7 +67,6 @@ input:-webkit-autofill:focus {
     font-weight: 500;
     min-width: 300px;
     border-radius: 35px;
-    /* border: 2px solid #fad9549f; */
     background-color: #fff;
     color: black;
 

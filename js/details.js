@@ -73,11 +73,19 @@ function addSeasonEpisode(data) {
 async function getcredits(id, type) {
     let res = await fetch(`${BASE_URL}/${type}/${id}/credits?${API_KEY}`);
     let data = await res.json();
+    console.log(data);
     if (!creatorFound) {
         let directorArr = data.crew.filter((el) => {
             return el.known_for_department === "Directing";
-        })
-        creator.innerText = directorArr[0].name || "N/A";
+        });
+
+        if (directorArr.length === 0) {
+            creator.innerText = "Unknown";
+        }
+        else {
+            creator.innerText = directorArr[0].name;
+
+        }
     }
     for (i = 0; i < 6; i++) {
         let span = document.createElement("span")
