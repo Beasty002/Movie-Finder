@@ -183,3 +183,20 @@ function updateVisibility(e) {
     }
 }
 
+
+var lastScrollTop = 0;
+nav = document.querySelector("header");
+window.addEventListener("scroll", () => {
+    console.clear();
+    var scrollTop = window.pageYOffset; //
+    if (scrollTop > lastScrollTop) {
+        nav.style.top = "-100px"
+    }
+    else {
+        nav.style.top = "0px"
+    }
+    console.log(`Current is : ${lastScrollTop}        &     scroll Top is ${scrollTop}`)
+    lastScrollTop = scrollTop;
+})
+
+
