@@ -196,7 +196,7 @@ function recommendations(id, type) {
 function details(card, type) {
     let figure = card.querySelector("figure");
     figure.addEventListener("click", () => {
-        window.location.href = `./../details.html?id=${card.id}&type=${type}`
+        window.location.href = `./details.html?id=${card.id}&type=${type}`
     })
 }
 function scrollCard(e) {

@@ -122,7 +122,7 @@ form.addEventListener("submit", e => {
     e.preventDefault();
     const searchTerm = search.value;
     if (searchTerm) {
-        window.location.href = `./../searchpage.html?search=${search.value}`
+        window.location.href = `./searchpage.html?search=${search.value}`
     }
 })
 
