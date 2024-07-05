@@ -250,6 +250,6 @@ form.addEventListener("submit", e => {
     const searchTerm = search.value;
     if (searchTerm) {
         console.log(searchTerm)
-        window.location.href = `./../searchpage.html?search=${search.value}`
+        window.location.href = `./searchpage.html?search=${search.value}`
     }
 })
