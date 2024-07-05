@@ -419,6 +419,12 @@ main {
 
 }
 
+@media(width <=500px) {
+    .btn-cont {
+        display: none !important;
+    }
+}
+
 .movies-container::-webkit-scrollbar {
     display: none;
 }

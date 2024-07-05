@@ -161,6 +161,7 @@ main {
     border-radius: 20px;
     backdrop-filter: blur(4px);
     padding-bottom: 80px;
+
 }
 
 #title {
@@ -312,7 +313,7 @@ table tr td {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-    overflow: hidden;
+    overflow-x: scroll;
     gap: 18px;
 
     .card {
@@ -476,4 +477,127 @@ table tr td {
     100% {
         transform: rotate(360deg);
     }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media(width <=1250px) {
+    :root {
+        --main-width: 1000px
+    }
+
+    .detail-container {
+        width: 80%;
+    }
+}
+
+@media(width <=1050px) {
+    :root {
+        --main-width: 900px
+    }
+
+    .btn-cont.left {
+        z-index: 9;
+
+        left: -20px;
+    }
+
+    .btn-cont.right {
+        z-index: 9;
+
+        right: -20px;
+    }
+}
+
+@media(width <=950px) {
+    :root {
+        --main-width: 95%;
+    }
+
+    .background-img {
+        width: 100%;
+    }
+
+    .card {
+        width: 150px !important;
+    }
+
+    .figure {
+        aspect-ratio: 2/3 !important;
+        width: 100%;
+        height: fit-content !important;
+
+        img {
+            height: 100% !important;
+            width: 100% !important;
+            object-fit: contain;
+        }
+    }
+
+    #title {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .detail-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie-title {
+
+        font-size: 0.9rem !important;
+    }
+
+    .overlay {
+        padding-bottom: 20px;
+
+        .content {
+            font-size: 0.8rem !important;
+        }
+
+    }
+
+    #logo a img {
+        margin-top: 10px;
+        height: 35px;
+    }
+
+    #searchBar {
+        min-width: auto;
+        width: 200px !important;
+    }
+
+    button {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+
+}
+
+@media(width <=580px) {
+    .btn-cont {
+        display: none !important;
+    }
+
+    #poster {
+        width: 200px;
+    }
+
+    .detail-container {
+        gap: 10px;
+    }
+}
+
+.movies-container::-webkit-scrollbar {
+    display: none;
 }

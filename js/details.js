@@ -88,7 +88,12 @@ async function getcredits(id, type) {
     }
     for (i = 0; i < 6; i++) {
         let span = document.createElement("span")
-        span.innerText = data.cast[i].name;
+        if (data.cast) {
+            if (data?.cast[i]?.name) {
+                span.innerText = data.cast[i].name;
+
+            }
+        }
         span.classList.add("cast-name");
         stars.appendChild(span)
     }
