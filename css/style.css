@@ -161,11 +161,10 @@ main {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            height: 427px;
 
             img {
                 width: 100%;
-                height: 100%;
+                aspect-ratio: 2/3;
                 transition: all 0.5s ease;
             }
 
@@ -265,6 +264,7 @@ main {
     border: none;
     position: absolute;
     top: 40%;
+    width: fit-content;
 
 }
 
@@ -316,7 +316,6 @@ main {
     width: 100dvw;
     background-color: #181818;
     z-index: 99999;
-
 }
 
 .loader-spinner {
@@ -341,4 +340,76 @@ main {
     100% {
         transform: rotate(360deg);
     }
+}
+
+@media(width <=1250px) {
+    :root {
+        --main-width: 1000px
+    }
+}
+
+@media(width <=1050px) {
+    :root {
+        --main-width: 900px
+    }
+
+    .btn-cont.left {
+        z-index: 9;
+
+        left: -20px;
+    }
+
+    .btn-cont.right {
+        z-index: 9;
+
+        right: -20px;
+    }
+}
+
+@media(width <=950px) {
+    :root {
+        --main-width: 95%;
+    }
+
+    .card {
+        width: 150px !important;
+    }
+
+    .figure {
+        aspect-ratio: 2/3 !important;
+        width: 100%;
+        height: fit-content !important;
+
+        img {
+            height: 100% !important;
+            width: 100% !important;
+            object-fit: contain;
+        }
+    }
+
+    .movie-title {
+
+        font-size: 0.9rem !important;
+    }
+
+    .overlay {
+        padding-bottom: 20px;
+
+        .content {
+            font-size: 0.8rem !important;
+        }
+
+    }
+
+    #logo a img {
+        margin-top: 10px;
+        height: 35px;
+    }
+
+    #searchBar {
+        min-width: auto;
+        width: 200px !important;
+    }
+
+
 }

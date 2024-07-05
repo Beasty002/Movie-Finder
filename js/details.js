@@ -73,7 +73,6 @@ function addSeasonEpisode(data) {
 async function getcredits(id, type) {
     let res = await fetch(`${BASE_URL}/${type}/${id}/credits?${API_KEY}`);
     let data = await res.json();
-    console.log(data);
     if (!creatorFound) {
         let directorArr = data.crew.filter((el) => {
             return el.known_for_department === "Directing";
@@ -152,6 +151,7 @@ function toggleOverview(e) {
 function recommendations(id, type) {
     let url = `https://api.themoviedb.org/3/${type}/${id}/recommendations?${API_KEY}`
     fetch(url).then(res => res.json()).then(data => {
+        console.log(data.results)
         if (data.results.length === 0) {
             document.querySelector("#recommendedSection").style.display = "none";
         }

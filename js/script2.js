@@ -176,7 +176,6 @@ window.addEventListener("scroll", () => {
     else {
         nav.style.top = "0px"
     }
-    console.log(`Current is : ${lastScrollTop}        &     scroll Top is ${scrollTop}`)
     lastScrollTop = scrollTop;
 })
 
