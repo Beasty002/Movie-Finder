@@ -596,6 +596,11 @@ table tr td {
     .detail-container {
         gap: 10px;
     }
+
+    .detail-container {
+        width: 95%;
+        padding: 10px 15px;
+    }
 }
 
 .movies-container::-webkit-scrollbar {
