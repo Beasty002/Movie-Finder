@@ -2,6 +2,8 @@
     --main-width: 1250px;
     --body-bg: #121212;
     --bg-color: #181818;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
 
 }
 
@@ -261,6 +263,14 @@ main {
     overflow: hidden;
 }
 
+.content p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    /* Number of lines to show */
+    overflow: hidden;
+}
+
 .extra-details {
     margin-top: 20px;
 }
@@ -325,10 +335,10 @@ table tr td {
         flex-shrink: 0;
 
         figure {
+            aspect-ratio: 2/3 !important;
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            height: 427px;
 
             img {
                 width: 100%;
@@ -576,9 +586,8 @@ table tr td {
         width: 200px !important;
     }
 
-    button {
-        -webkit-tap-highlight-color: transparent;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    .overlay {
+        padding-bottom: 20px !important;
     }
 
 
@@ -600,6 +609,11 @@ table tr td {
     .detail-container {
         width: 95%;
         padding: 10px 15px;
+        margin-top: 45%;
+    }
+
+    .content {
+        padding-bottom: 10px;
     }
 }
 
