@@ -16,6 +16,8 @@ const relContainer = document.getElementById("relContainer");
 const recommendedSection = document.getElementById("recommendations");
 const form = document.querySelector("form");
 const search = document.getElementById("searchBar");
+const genreType = document.getElementById("type");
+const genreContainer = document.querySelector(".type-genre")
 let creatorFound = false;
 
 
@@ -49,6 +51,12 @@ function loadContent(type, id) {
         }
         if (type === "tv") {
             addSeasonEpisode(data);
+            genreType.innerText = "TV series";
+        }
+        else {
+            console.log("yolo")
+            genreType.innerText = "Movie";
+            genreContainer.style.gridTemplateColumns = "73px 1fr"
         }
         recommendations(id, type);
         getcredits(id, type);
