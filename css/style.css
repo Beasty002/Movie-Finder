@@ -411,5 +411,10 @@ main {
         width: 200px !important;
     }
 
+    button {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
 
 }
