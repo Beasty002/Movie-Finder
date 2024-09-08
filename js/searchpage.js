@@ -49,9 +49,13 @@ function show(data) {
         if (typeofVote == "number") {
             vote = vote.toFixed(1);
         }
+        let trueOverlay = "none-overlay"
+        if (el.overview) {
+            trueOverlay = "overlay"
+        }
         let cardHTML = ` <figure>
         <img src="${IMG_URL + el.poster_path}" alt="${title}">
-        <div class="overlay">
+        <div class="${trueOverlay}">
             <div class="content">
                 <p>${el.overview}</p>
             </div>

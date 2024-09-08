@@ -405,7 +405,8 @@ table tr td {
     }
 }
 
-.content::before {
+
+.overlay>.content::before {
     content: "";
     position: absolute;
     left: 10px;

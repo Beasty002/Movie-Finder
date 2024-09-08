@@ -73,9 +73,14 @@ function show(data, type) {
             vote = vote.toFixed(1);
         }
         // html code for the movie/tv show card
+        let trueOverlay = "none-overlay"
+        if (el.overview) {
+            trueOverlay = "overlay"
+        }
+
         let container = ` <figure>
             <img src="${IMG_URL + el.poster_path}" alt="${title}">
-            <div class="overlay">
+            <div class="${trueOverlay}">
                 <div class="content">
                     <p>${el.overview}</p>
                 </div>

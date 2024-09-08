@@ -54,7 +54,6 @@ function loadContent(type, id) {
             genreType.innerText = "TV series";
         }
         else {
-            console.log("yolo")
             genreType.innerText = "Movie";
             genreContainer.style.gridTemplateColumns = "73px 1fr"
         }
@@ -96,14 +95,15 @@ async function getcredits(id, type) {
     }
     for (i = 0; i < 6; i++) {
         let span = document.createElement("span")
+        console.log(data.cast)
         if (data.cast) {
             if (data?.cast[i]?.name) {
                 span.innerText = data.cast[i].name;
-
+                span.classList.add("cast-name");
+                stars.appendChild(span)
             }
         }
-        span.classList.add("cast-name");
-        stars.appendChild(span)
+
     }
     removeLoader();
 }
@@ -124,15 +124,25 @@ function fillData(type, data) {
         vote = vote.toFixed(1);
         ratingQty.innerText = `(${data.vote_count})`;
     }
+
     rating.innerText = vote;
-    overview.innerText = data.overview;
+    overview.innerText = data.overview || "N/A";
+    if (!data.overview || data.overview.length < 120) {
+        document.querySelector("#readMore").style.display = "none"
+        document.querySelector("#overview").style.webkitLineClamp = "3";
+    }
     const date = new Date(data.release_date || data.first_air_date);
 
     releaseDate.innerText = date.toDateString() || "N/A";
 
 
     let img = document.querySelector("#background");
-    img.src = IMG_URL + data.backdrop_path;
+    if (!data.backdrop_path) {
+        img.src = "./default.jpg";
+    }
+    else {
+        img.src = IMG_URL + data.backdrop_path;
+    }
     let img1 = document.querySelector("#poster");
     img1.src = IMG_URL + data.poster_path;
 

@@ -225,7 +225,8 @@ main {
     overflow: hidden;
 }
 
-.content::before {
+
+.overlay>.content::before {
     content: "";
     position: absolute;
     left: 10px;
@@ -234,6 +235,7 @@ main {
     top: 15px;
     height: 50px;
 }
+
 
 .card:hover {
     figure {
